@@ -10,23 +10,30 @@ fn toggle_popout(window: tauri::Window) {
   println!("toggling");
   if let Some(popout_window) = window.get_window("popout") {
     println!("found window");
-    if popout_window.is_visible().unwrap() {
-      match popout_window.hide() {
-        Ok(()) => {
-          println!("hidden");
-        },
-        Err(err) => {
-          println!("error hiding: {}", err);
+    match popout_window.is_visible() {
+      Ok(visible) => {
+        if visible {
+          match popout_window.hide() {
+            Ok(()) => {
+              println!("hidden");
+            },
+            Err(err) => {
+              println!("error hiding: {}", err);
+            }
+          }
+        } else {
+          match popout_window.show() {
+            Ok(()) => {
+              println!("shown");
+            },
+            Err(err) => {
+              println!("error showing: {}", err);
+            }
+          }
         }
-      }
-    } else {
-      match popout_window.show() {
-        Ok(()) => {
-          println!("shown");
-        },
-        Err(err) => {
-          println!("error showing: {}", err);
-        }
+      },
+      Err(err) => {
+        println!("error: {}", err);
       }
     }
   }
