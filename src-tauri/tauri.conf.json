@@ -62,9 +62,12 @@
         "width": 800
       },
       {
+        "title": "POPOUT",
         "width": 800,
         "height": 300,
+        "resizable": true,
         "decorations": false,
+        "fullscreen": false,
         "url": "popout.html",
         "label": "popout",
         "visible": false

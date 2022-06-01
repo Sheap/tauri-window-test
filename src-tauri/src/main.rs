@@ -12,7 +12,9 @@ fn toggle_popout(window: tauri::Window) {
     println!("found window");
     match popout_window.is_visible() {
       Ok(visible) => {
+        println!("got visibility");
         if visible {
+          println!("is visible");
           match popout_window.hide() {
             Ok(()) => {
               println!("hidden");
@@ -22,6 +24,7 @@ fn toggle_popout(window: tauri::Window) {
             }
           }
         } else {
+          println!("is hidden");
           match popout_window.show() {
             Ok(()) => {
               println!("shown");
